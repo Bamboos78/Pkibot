@@ -2,8 +2,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Plib: Quantitative Research and Trading Library
-# https://bitbucket.org/bamboos-consulting/plib/src/master/
+# Pkibot: A simple API interface to Kibot
 #
 # Copyright 2018-2022 Roberto Garrone
 #
@@ -20,14 +19,15 @@
 # limitations under the License.
 #
 #############################################################################################
-# Kibot APIs 
+# Pkibot  
 #
 # Module including functions to download data from Kibot
 #############################################################################################      
 
 UID=''
 PWD=''
-
+root='url='http://api.kibot.com/'
+   
 headers = {'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:66.0) Gecko/20100101 Firefox/66.0",
    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
    'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.7',
@@ -40,9 +40,11 @@ headers = {'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:66.0)
 ##############################################    
 def klogin(uid='', pwd=''):
     import urllib.request
-    url='http://api.kibot.com/?action=login&user='+uid+'&password='+pwd
+    
+    endpoint='?action=login'
+    key='&user='+uid+'&password='+pwd
     try:
-        request=urllib.request.Request(url,None,headers) 
+        request=urllib.request.Request(root+endpoint+key, None, headers) 
         response = urllib.request.urlopen(request)   
         UID=uid
         PWD=pwd
